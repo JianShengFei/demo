@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,8 +28,8 @@ public class OrderByFieldUtil {
         return getOrderByFieldsMap(instance, null, null);
     }
 
-    public static Map<String, String> getOrderByFieldsMap(Class instance, Map<String, String> fieldMap) {
-        return getOrderByFieldsMap(instance, fieldMap, null);
+    public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields) {
+        return getOrderByFieldsMap(instance, ignoreFields, null);
     }
 
     public static Map<String, String> getOrderByFieldsMap(Class instance, Boolean isOpenHump) {
@@ -42,20 +43,24 @@ public class OrderByFieldUtil {
      * <p><font color = #e60039>使用到反射，请勿滥用</font></p>
      *
      * @param instance 需要获取字段的实体对象
-     * @param fieldMap 需要过滤的字段
+     * @param ignoreFields 需要过滤的字段
      * @param isOpenHump 是否开启驼峰转下划线模式
      * @return
      * @throws NoSuchFieldException
      */
-    public static Map<String, String> getOrderByFieldsMap(Class instance, Map<String, String> fieldMap, Boolean isOpenHump) {
-        Map<String, String> map = new HashMap();
+    public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields, Boolean isOpenHump) {
         Field[] fields = instance.getDeclaredFields();
+        if(fields.length == 0) {
+            throw new NullPointerException("Your bean field is empty !");
+        }
+
+        Map<String, String> map = new HashMap(7);
         for (int i = 0; i < fields.length; i++) {
-            if(CollectionUtil.isEmpty(fieldMap)) {
+            if(CollectionUtil.isEmpty(ignoreFields)) {
                 putOrIgnoreByTableField(map, fields[i], isOpenHump);
             }else{
                 // 除过fieldMap中的属性，其他属性都获取
-                if(!fieldMap.containsValue(fields[i].getName())) {
+                if(!ignoreFields.contains(fields[i].getName())) {
                     putOrIgnoreByTableField(map, fields[i], isOpenHump);
                 }
             }
