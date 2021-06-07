@@ -1,5 +1,6 @@
 package com.ash.page.sort;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -14,13 +15,14 @@ import java.time.LocalDateTime;
 @Data
 public class OrderByMappingBean {
 
+    @TableField("name")
     private String userName;
 
+    @TableField("password")
     private String password;
 
     private LocalDateTime createDateTime;
 
     private LocalDateTime registerDateTime;
-
 
 }

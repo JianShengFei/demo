@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author jianshengfei
  * @version 1.0.0
- * @Description 自定义工具类
+ * @Description 自定义排序字段映射工具类
  * @ClassName OrderByFieldUtil.java
  * @createTime 2021年04月13日 13:02
  */
@@ -25,14 +25,14 @@ public class OrderByFieldUtil {
     private OrderByFieldUtil() {}
 
     public static Map<String, String> getOrderByFieldsMap(Class instance) {
-        return getOrderByFieldsMap(instance, null, null);
+        return getOrderByFieldsMap(instance, null, false);
     }
 
     public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields) {
-        return getOrderByFieldsMap(instance, ignoreFields, null);
+        return getOrderByFieldsMap(instance, ignoreFields, false);
     }
 
-    public static Map<String, String> getOrderByFieldsMap(Class instance, Boolean isOpenHump) {
+    public static Map<String, String> getOrderByFieldsMap(Class instance, boolean isOpenHump) {
         return getOrderByFieldsMap(instance, null, isOpenHump);
     }
 
@@ -48,15 +48,19 @@ public class OrderByFieldUtil {
      * @return
      * @throws NoSuchFieldException
      */
-    public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields, Boolean isOpenHump) {
+    public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields, boolean isOpenHump) {
+
         Field[] fields = instance.getDeclaredFields();
-        if(fields.length == 0) {
-            throw new NullPointerException("Your bean field is empty !");
+        boolean ignoreIsNull = CollectionUtil.isEmpty(ignoreFields);
+
+        if(fields.length == 0 && !isOpenHump) {
+            return null;
         }
 
-        Map<String, String> map = new HashMap(7);
+        Map<String, String> map = new HashMap(fields.length);
+
         for (int i = 0; i < fields.length; i++) {
-            if(CollectionUtil.isEmpty(ignoreFields)) {
+            if(ignoreIsNull) {
                 putOrIgnoreByTableField(map, fields[i], isOpenHump);
             }else{
                 // 除过fieldMap中的属性，其他属性都获取
@@ -71,25 +75,25 @@ public class OrderByFieldUtil {
     /**
      * 根据 @TableField put or ignore
      * !优化 @TableField 注解可尝试传入自定义的
-     * @param map
-     * @param field
+     * @param map 映射字段容器
+     * @param field 映射的字段
      * @param isOpenHump 是否开启驼峰转下划线模式
      */
-    private static void putOrIgnoreByTableField(Map<String, String> map, Field field, Boolean isOpenHump){
+    private static void putOrIgnoreByTableField(Map<String, String> map, Field field, boolean isOpenHump){
         String name = null;
-        boolean annotationPresent = field.isAnnotationPresent(TableField.class);
-        if (annotationPresent) {
-            // 获取注解值
-            name = field.getAnnotation(TableField.class).value();
-        } else if (isOpenHump!= null && isOpenHump) {
+        // 开启驼峰转下划线，则优先取字段名
+        if(isOpenHump) {
             name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName());
+        } else {
+            boolean annotationPresent = field.isAnnotationPresent(TableField.class);
+            if (annotationPresent) {
+                // 获取注解值
+                name = field.getAnnotation(TableField.class).value();
+            }
         }
         if(StringUtils.isNotEmpty(name)) {
             map.put(field.getName(), name);
         }
     }
-
-
-
 
 }

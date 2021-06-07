@@ -37,6 +37,11 @@ public class OrderByFieldTest {
         System.out.println("-----------------4-------------->> 3");
         printMap(orderByFieldsMap4);
 
+
+        System.out.println("--------------------------------");
+        Map<String, String> orderByFieldsMap5 = OrderByFieldUtil.getOrderByFieldsMap(OrderByMappingNullFieldBean.class);
+        System.out.println("空对象返回：" + orderByFieldsMap5);
+
     }
 
     /**
