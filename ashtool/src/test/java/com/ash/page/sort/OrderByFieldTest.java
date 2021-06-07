@@ -1,6 +1,7 @@
 package com.ash.page.sort;
 
 import cn.hutool.json.JSONUtil;
+import com.ash.page.FieldMappingCondition;
 import com.ash.page.OrderByFieldUtil;
 import org.junit.jupiter.api.Test;
 
@@ -19,28 +20,18 @@ public class OrderByFieldTest {
 
     @Test
     public void testOrderBy(){
-        Map<String, String> orderByFieldsMap1 = OrderByFieldUtil.getOrderByFieldsMap(OrderByMappingBean.class);
-        Map<String, String> orderByFieldsMap2 = OrderByFieldUtil.getOrderByFieldsMap(OrderByMappingBean.class, true);
-
-        // 忽略的字段集合
-        List<String> ignoreFields = new ArrayList<>();
-        ignoreFields.add("password");
-        Map<String, String> orderByFieldsMap3 = OrderByFieldUtil.getOrderByFieldsMap(OrderByMappingBean.class, ignoreFields);
-        Map<String, String> orderByFieldsMap4 = OrderByFieldUtil.getOrderByFieldsMap(OrderByMappingBean.class, ignoreFields, true);
-
-        System.out.println("-----------------1-------------->> null");
-        printMap(orderByFieldsMap1);
-        System.out.println("-----------------2-------------->> 4");
-        printMap(orderByFieldsMap2);
-        System.out.println("-----------------3-------------->> null");
-        printMap(orderByFieldsMap3);
-        System.out.println("-----------------4-------------->> 3");
-        printMap(orderByFieldsMap4);
+        FieldMappingCondition fieldMappingCondition = new FieldMappingCondition().setSingle(true);
 
 
-        System.out.println("--------------------------------");
-        Map<String, String> orderByFieldsMap5 = OrderByFieldUtil.getOrderByFieldsMap(OrderByMappingNullFieldBean.class);
-        System.out.println("空对象返回：" + orderByFieldsMap5);
+        OrderByFieldUtil orderByFieldUtil = new OrderByFieldUtil(fieldMappingCondition);
+
+        Map<String, String> orderByFieldsMap = orderByFieldUtil.getOrderByFieldsMap(OrderByMappingBean.class);
+
+//        new orderByFieldUtil(new FieldMappingCondition().setOpenHump(true)).getOrderByFieldsMap()
+
+
+        System.out.println(orderByFieldsMap);
+
 
     }
 
@@ -53,5 +44,6 @@ public class OrderByFieldTest {
             System.out.println(JSONUtil.toJsonStr(o));
         }
     }
+
 
 }

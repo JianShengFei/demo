@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author jianshengfei
@@ -20,66 +21,80 @@ import java.util.Map;
 public class OrderByFieldUtil {
 
     /**
-     * 私有化构造
+     * 字段映射容器
      */
-    private OrderByFieldUtil() {}
+    private volatile Map<String, String> fmc;
 
-    public static Map<String, String> getOrderByFieldsMap(Class instance) {
-        return getOrderByFieldsMap(instance, null, false);
+    /**
+     * 条件构造器, 主要用于构造不同场景需要的变量参数
+     */
+    private volatile FieldMappingCondition condition;
+
+    public OrderByFieldUtil(FieldMappingCondition condition) {
+        this.condition = condition;
+        if(condition.isSingle()) {
+            fmc = new ConcurrentHashMap<>(16);
+        }
     }
 
-    public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields) {
-        return getOrderByFieldsMap(instance, ignoreFields, false);
-    }
-
-    public static Map<String, String> getOrderByFieldsMap(Class instance, boolean isOpenHump) {
-        return getOrderByFieldsMap(instance, null, isOpenHump);
+    /**
+     * 返回字段映射容器, 提供一个获取容器的方法
+     * @return
+     */
+    public Map<String, String> fmc() {
+        return this.fmc;
     }
 
     /**
      * 动态获取对应实体对象 @TableField 注解的字段，用于排序获取对应数据库
+     * 当没有此注解时, isOpenHump = true, 否则导致映射容器为空, 从而报错
      * <p><font color = #e60039>适用此方法时，请注意返回的实体对象 和 instance 一致, 避免前端传错</font></p>
      *
      * <p><font color = #e60039>使用到反射，请勿滥用</font></p>
      *
      * @param instance 需要获取字段的实体对象
      * @param ignoreFields 需要过滤的字段
-     * @param isOpenHump 是否开启驼峰转下划线模式
+     * @param isOpenHump 是否开启驼峰转下划线模式, <font color = #e60039>对象字段没有@TableField注解时, 必须开启</font>
      * @return
      * @throws NoSuchFieldException
      */
-    public static Map<String, String> getOrderByFieldsMap(Class instance, List<String> ignoreFields, boolean isOpenHump) {
+    public Map<String, String> getOrderByFieldsMap(Class instance) {
 
         Field[] fields = instance.getDeclaredFields();
-        boolean ignoreIsNull = CollectionUtil.isEmpty(ignoreFields);
-
-        if(fields.length == 0 && !isOpenHump) {
-            return null;
+        if(fields.length == 0 && !this.condition.isOpenHump) {
+            throw new NullPointerException("The number of object fields is 0");
         }
 
-        Map<String, String> map = new HashMap(fields.length);
+        // 单例模式, 无需考虑线程安全, 直接使用普通的 hashMap
+        fmc = condition.isSingle() ? fmc : new HashMap(fields.length);
+        boolean ignoreIsNull = CollectionUtil.isEmpty(this.condition.getIgnoreFields());
 
         for (int i = 0; i < fields.length; i++) {
             if(ignoreIsNull) {
-                putOrIgnoreByTableField(map, fields[i], isOpenHump);
+                putOrIgnoreByTableField(fmc, fields[i], this.condition.isOpenHump);
             }else{
                 // 除过fieldMap中的属性，其他属性都获取
-                if(!ignoreFields.contains(fields[i].getName())) {
-                    putOrIgnoreByTableField(map, fields[i], isOpenHump);
+                if(!this.condition.getIgnoreFields().contains(fields[i].getName())) {
+                    putOrIgnoreByTableField(fmc, fields[i], this.condition.isOpenHump);
                 }
             }
         }
-        return map;
+
+        if(CollectionUtil.isEmpty(fmc)) {
+            throw new NullPointerException("The mapping field container is empty");
+        }
+
+        return fmc;
     }
 
     /**
      * 根据 @TableField put or ignore
      * !优化 @TableField 注解可尝试传入自定义的
-     * @param map 映射字段容器
+     * @param fmc 映射字段容器
      * @param field 映射的字段
      * @param isOpenHump 是否开启驼峰转下划线模式
      */
-    private static void putOrIgnoreByTableField(Map<String, String> map, Field field, boolean isOpenHump){
+    private static void putOrIgnoreByTableField(Map<String, String> fmc, Field field, boolean isOpenHump){
         String name = null;
         // 开启驼峰转下划线，则优先取字段名
         if(isOpenHump) {
@@ -92,7 +107,7 @@ public class OrderByFieldUtil {
             }
         }
         if(StringUtils.isNotEmpty(name)) {
-            map.put(field.getName(), name);
+            fmc.put(field.getName(), name);
         }
     }
 

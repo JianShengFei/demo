@@ -12,5 +12,6 @@ import lombok.Data;
 @Data
 public class OrderByMappingNullFieldBean {
 
+    private String name;
 
 }
