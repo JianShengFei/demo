@@ -1,7 +1,5 @@
 package com.ash.page;
 
-import lombok.*;
-
 import java.util.List;
 
 /**
@@ -11,7 +9,7 @@ import java.util.List;
  * @Description 字段映射条件构造器对象
  * @createTime 2021年06月07日 19:49
  */
-public class FieldMappingCondition {
+public class FieldMappingCondition<T> extends AbstractCondition<T> {
 
     /**
      * 是否单例
@@ -23,17 +21,6 @@ public class FieldMappingCondition {
     public boolean isOpenHump;
 
     public List<String> ignoreFields;
-
-
-//    public FieldMappingCondition() {
-//        this(null);
-//    }
-//
-//    public FieldMappingCondition() {
-//        this(null);
-//    }
-
-
 
     public FieldMappingCondition setSingle(boolean single) {
         isSingle = single;
@@ -62,5 +49,4 @@ public class FieldMappingCondition {
     public List<String> getIgnoreFields() {
         return ignoreFields;
     }
-
 }

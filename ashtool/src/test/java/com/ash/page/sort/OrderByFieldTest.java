@@ -5,8 +5,6 @@ import com.ash.page.FieldMappingCondition;
 import com.ash.page.OrderByFieldUtil;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,17 +18,11 @@ public class OrderByFieldTest {
 
     @Test
     public void testOrderBy(){
-        FieldMappingCondition fieldMappingCondition = new FieldMappingCondition().setSingle(true);
 
+        OrderByFieldUtil orderByFieldUtil = new OrderByFieldUtil();
 
-        OrderByFieldUtil orderByFieldUtil = new OrderByFieldUtil(fieldMappingCondition);
+        FieldMappingCondition<OrderByMappingBean> condition = new FieldMappingCondition().setSingle(true);
 
-        Map<String, String> orderByFieldsMap = orderByFieldUtil.getOrderByFieldsMap(OrderByMappingBean.class);
-
-//        new orderByFieldUtil(new FieldMappingCondition().setOpenHump(true)).getOrderByFieldsMap()
-
-
-        System.out.println(orderByFieldsMap);
 
 
     }

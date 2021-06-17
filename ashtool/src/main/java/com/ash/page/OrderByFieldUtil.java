@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -30,12 +29,7 @@ public class OrderByFieldUtil {
      */
     private volatile FieldMappingCondition condition;
 
-    public OrderByFieldUtil(FieldMappingCondition condition) {
-        this.condition = condition;
-        if(condition.isSingle()) {
-            fmc = new ConcurrentHashMap<>(16);
-        }
-    }
+    public OrderByFieldUtil() {}
 
     /**
      * 返回字段映射容器, 提供一个获取容器的方法
@@ -45,6 +39,21 @@ public class OrderByFieldUtil {
         return this.fmc;
     }
 
+    private void init(FieldMappingCondition condition){
+        this.condition = condition;
+        if(this.condition.isSingle) {
+            // 单列模式下, 容器为空  初始化一个默认16长度的 cMap
+            if(CollectionUtil.isEmpty(fmc)) {
+                fmc = new ConcurrentHashMap<>(16);
+            }
+        }else {
+            fmc = new HashMap<>(condition.entityClass.getDeclaredFields().length);
+        }
+        if(this.condition.entityClass == null) {
+            this.condition.entityClass = condition.initGenericParadigm();
+        }
+    }
+
     /**
      * 动态获取对应实体对象 @TableField 注解的字段，用于排序获取对应数据库
      * 当没有此注解时, isOpenHump = true, 否则导致映射容器为空, 从而报错
@@ -52,15 +61,24 @@ public class OrderByFieldUtil {
      *
      * <p><font color = #e60039>使用到反射，请勿滥用</font></p>
      *
-     * @param instance 需要获取字段的实体对象
-     * @param ignoreFields 需要过滤的字段
-     * @param isOpenHump 是否开启驼峰转下划线模式, <font color = #e60039>对象字段没有@TableField注解时, 必须开启</font>
+     * @param condition 条件构造器
      * @return
      * @throws NoSuchFieldException
      */
-    public Map<String, String> getOrderByFieldsMap(Class instance) {
+    public Map<String, String> getOrderByFieldsMap(FieldMappingCondition condition) {
+        if(condition == null) {
+            throw new NullPointerException("condition bean is be not null");
+        }
 
-        Field[] fields = instance.getDeclaredFields();
+        init(condition);
+
+
+
+        if(this.condition.entityClass == null) {
+            throw new NullPointerException("The entityClass is null");
+        }
+
+        Field[] fields = this.condition.entityClass.getDeclaredFields();
         if(fields.length == 0 && !this.condition.isOpenHump) {
             throw new NullPointerException("The number of object fields is 0");
         }
