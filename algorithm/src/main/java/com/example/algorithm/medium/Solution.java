@@ -1,12 +1,18 @@
 package com.example.algorithm.medium;
 
 
-import javax.swing.tree.TreeNode;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * @author jianshengfei
+ * @Description
+ * @create 2020-12-21 18:30
+ */
 public class Solution {
 
     private static class TreeNode{
@@ -38,7 +44,7 @@ public class Solution {
      * @return
      */
     public static List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        List<List<Integer>> ret = new ArrayList<>();
         if (root == null) {
             return ret;
         }
@@ -46,7 +52,7 @@ public class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            List<Integer> level = new ArrayList<Integer>();
+            List<Integer> level = new ArrayList<>();
             int currentLevelSize = queue.size();
             for (int i = 1; i <= currentLevelSize; ++i) {
                 TreeNode node = queue.poll();
@@ -82,5 +88,6 @@ public class Solution {
         }
 
     }
+
 
 }
