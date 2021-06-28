@@ -3,11 +3,12 @@ package com.example.algorithm;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
 
+import java.net.InetAddress;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -65,7 +66,8 @@ public class SimpleTest {
         System.out.println("-------------------------------------------");
 
         for (SortBean bean : nullList) {
-            bean.setNum(--sort);
+            sort -= 10;
+            bean.setNum(sort);
         }
 
         System.out.println(nullList);
@@ -164,16 +166,90 @@ public class SimpleTest {
         if (value > dictionaryWeek) {
             day = 7 - (value - dictionaryWeek);
         }
-        return LocalDate.now().plusDays(day);
+        return date.plusDays(day);
     }
 
 
     @Test
     public void test4(){
+        LocalDate localDate = LocalDate.of(2021, 2, 33);
+        LocalDate newLocalDate = byWeek(localDate, 5);
+        System.out.println(newLocalDate);
+    }
 
+
+    /**
+     * stream 流 差集计算
+     */
+    @Test
+    public void test05(){
+        List<Integer> asdasd = new ArrayList<>();
+
+        asdasd.add(3);
+        asdasd.add(4);
+        asdasd.add(6);
+        asdasd.add(7);
+
+        List<Integer> newas = new ArrayList<>();
+        newas.add(3);
+
+        List<Integer> collect = asdasd.stream().filter(integer -> !newas.contains(integer)).collect(Collectors.toList());
+
+        System.out.println(collect);
+
+        System.out.println(asdasd.size() >> 1);
 
     }
 
 
+    /**
+     * 获取操作系统测试
+     */
+    @Test
+    public void test06(){
+        try {
+            InetAddress addr = InetAddress.getLocalHost();
+            String ip = addr.getHostAddress().toString(); //获取本机ip
+            String hostName = addr.getHostName().toString(); //获取本机计算机名称
+            System.out.println("本机IP：" + ip + "\n本机名称:" + hostName);
+            Properties props = System.getProperties();
+            System.out.println("操作系统的名称：" + props.getProperty("os.name"));
+            System.out.println("操作系统的版本：" + props.getProperty("os.version"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 时间测试
+     */
+    @Test
+    public void test07(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Date now = new Date(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2021, 5, 24, 18, 30, 00);
+        Date startTime = calendar.getTime();
+
+        calendar.set(2021, 5, 24, 20, 30, 00);
+        Date endTime = calendar.getTime();
+        System.out.println(format.format(now));
+        System.out.println(format.format(startTime));
+        System.out.println(format.format(endTime));
+
+        System.out.println("----------------------------------");
+
+        System.out.println(now.after(startTime));
+        System.out.println(now.before(endTime));
+        System.out.println(now.after(startTime) && now.before(endTime));
+    }
+
+    @Test
+    public void test08(){
+        Random rd = new Random();
+        System.out.println(rd.nextInt(100));
+
+    }
 
 }
