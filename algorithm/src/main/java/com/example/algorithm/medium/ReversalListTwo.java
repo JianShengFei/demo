@@ -1,7 +1,6 @@
 package com.example.algorithm.medium;
 
 import com.example.algorithm.structure.ListNode;
-import org.junit.Test;
 
 /**
  * @ClassName ReversalListII
@@ -9,11 +8,9 @@ import org.junit.Test;
  * @Author jianshengfei
  * @Date 2021/6/27 22:11
  */
-public class ReversalListII {
+public class ReversalListTwo {
 
-    @Test
-    public void test01(){
-
+    public static void main(String[] args) {
         ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null)))));
 
         head.ergodic(head);
@@ -30,7 +27,7 @@ public class ReversalListII {
      * @param right
      * @return
      */
-    public ListNode reversalBetween(ListNode head, int left, int right){
+    public static ListNode reversalBetween(ListNode head, int left, int right){
 
         if(head == null || left >= right) {
             return head;

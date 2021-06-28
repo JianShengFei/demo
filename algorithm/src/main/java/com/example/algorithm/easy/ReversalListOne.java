@@ -1,7 +1,7 @@
 package com.example.algorithm.easy;
 
 import com.example.algorithm.structure.ListNode;
-import org.junit.Test;
+
 
 /**
  * @ClassName ReversalList
@@ -9,10 +9,9 @@ import org.junit.Test;
  * @Author jianshengfei
  * @Date 2021/6/27 22:07
  */
-public class ReversalListI {
+public class ReversalListOne {
 
-    @Test
-    public void test01(){
+    public static void main(String[] args) {
         // 构建单向链表
         ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null)))));
 
@@ -29,7 +28,7 @@ public class ReversalListI {
      * @param head
      * @return
      */
-    public ListNode reversalList(ListNode head) {
+    public static ListNode reversalList(ListNode head) {
 
         if(head == null) {
             return null;

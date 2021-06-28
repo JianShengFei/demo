@@ -1,7 +1,5 @@
 package com.example.algorithm.basics;
 
-import org.junit.Test;
-
 /**
  * @author jianshengfei
  * @Description
@@ -15,9 +13,7 @@ public class BitOperation {
      * https://www.cnblogs.com/lazycoding/archive/2011/03/21/unsigned-signed.html
      *
      */
-    @Test
-    public void main() {
-
+    public static void main(String[] args) {
         //  & 与
         and(3, 5);
         System.out.println("-----------------------------");
@@ -28,7 +24,6 @@ public class BitOperation {
 
 
         System.out.println(97 ^ 0);
-
     }
 
     public static void and(int a, int b){

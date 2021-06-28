@@ -1,16 +1,13 @@
 package com.example.algorithm.easy;
 
-import org.junit.Test;
-
 /**
  * @author jianshengfei
  * @Description
  * @create 2020-12-18 12:48
  */
-public class findTheDifference {
+public class FindTheDifference {
 
-    @Test
-    public void test01() {
+    public static void main(String[] args) {
         char c = findTheDifference("abcd", "abcde");
         System.out.println(c);
     }
