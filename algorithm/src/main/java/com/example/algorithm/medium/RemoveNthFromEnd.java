@@ -10,6 +10,13 @@ import com.example.algorithm.structure.ListNode;
  */
 public class RemoveNthFromEnd {
 
+    public static void main(String[] args) {
+
+
+
+
+    }
+
 
     /**
      * @Description 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
@@ -32,8 +39,28 @@ public class RemoveNthFromEnd {
      * @return
      */
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head == null) {
+            return null;
+        }
+        // 哨兵节点
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
 
-        return null;
+        ListNode p = dummy;
+        ListNode q = dummy;
+        for (int i = 1; i < n +1; i++) {
+            q = q.next;
+        }
+
+        while (q != null) {
+            p = p.next;
+            q = q.next;
+        }
+
+        ListNode delNode = p.next;
+        p.next = delNode.next;
+
+        return dummy.next;
     }
 
 

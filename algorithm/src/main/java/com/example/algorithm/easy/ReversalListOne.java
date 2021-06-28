@@ -1,6 +1,7 @@
 package com.example.algorithm.easy;
 
 import com.example.algorithm.structure.ListNode;
+import com.example.algorithm.util.ListNodeUtil;
 
 
 /**
@@ -11,15 +12,17 @@ import com.example.algorithm.structure.ListNode;
  */
 public class ReversalListOne {
 
+    private static ListNodeUtil listNodeUtil = new ListNodeUtil();
+
     public static void main(String[] args) {
         // 构建单向链表
         ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null)))));
 
-        head.ergodic(head);
+        listNodeUtil.ergodic(head);
 
         ListNode newHead = reversalList(head);
 
-        head.ergodic(newHead);
+        listNodeUtil.ergodic(newHead);
     }
 
 
