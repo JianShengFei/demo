@@ -1,25 +1,18 @@
 package com.example.algorithm.easy;
 
+import org.junit.Test;
+
 /**
- * @author Jianshengfei
+ * @author jianshengfei
  * @Description
  * @create 2020-12-18 12:48
  */
 public class findTheDifference {
 
-    public static void main(String[] args) {
-
-        char a = 'a';
-        char b = 'b';
-        System.out.println(a ^ b);
-
-        int num1 = 3;
-        int num2 = 5;
-        System.out.println(num1 ^ num2);
-
-        char c = findTheDifference(null, "abcde");
+    @Test
+    public void test01() {
+        char c = findTheDifference("abcd", "abcde");
         System.out.println(c);
-
     }
 
     /**
@@ -40,24 +33,33 @@ public class findTheDifference {
      * 2020年12月15日  jianshengfei
      * @param s
      * @param t
-     * @return
+     * @return Character
      */
-    public static char findTheDifference(String s, String t) {
+    public static Character findTheDifference(String s, String t) {
+
+        if(s == null || t == null) {
+            return null;
+        }
+
         int ret = 0;
         for (int i = 0; i < s.length(); ++i) {
-            System.out.println(s.charAt(i) + "s.charAt(i):   " + Integer.toBinaryString(s.charAt(i)));
+            System.out.println(s.charAt(i) + ", s.charAt(i):   " + Integer.toBinaryString(s.charAt(i)));
             System.out.println("        ret:   " + Integer.toBinaryString(ret));
             ret ^= s.charAt(i);
             System.out.println("result  ret:   " + Integer.toBinaryString(ret));
-            System.out.println("_______________________________________________");
+            System.out.println("________________________");
         }
+
+        System.out.println("_______________________________________________");
         System.out.println(ret);
+        System.out.println("_______________________________________________");
+
         for (int i = 0; i < t.length(); ++i) {
-            System.out.println(t.charAt(i) + "s.charAt(i):" + Integer.toBinaryString(t.charAt(i)));
+            System.out.println(t.charAt(i) + ", t.charAt(i):" + Integer.toBinaryString(t.charAt(i)));
             System.out.println("        ret:   " + Integer.toBinaryString(ret));
             ret ^= t.charAt(i);
             System.out.println("result  ret:   " + Integer.toBinaryString(ret));
-            System.out.println("_______________________________________________");
+            System.out.println("_________________________");
         }
         return (char) ret;
     }

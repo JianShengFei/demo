@@ -1,7 +1,9 @@
 package com.example.algorithm.basics;
 
+import org.junit.Test;
+
 /**
- * @author Jianshengfei
+ * @author jianshengfei
  * @Description
  * @create 2020-12-18 13:06
  */
@@ -11,10 +13,10 @@ public class BitOperation {
      * --> 计算编码规则
      * 理解有符号数和无符号数 - 博客园
      * https://www.cnblogs.com/lazycoding/archive/2011/03/21/unsigned-signed.html
-     * @param args
      *
      */
-    public static void main(String[] args) {
+    @Test
+    public void main() {
 
         //  & 与
         and(3, 5);
