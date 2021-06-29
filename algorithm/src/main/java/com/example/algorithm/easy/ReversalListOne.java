@@ -28,6 +28,10 @@ public class ReversalListOne {
 
     /**
      * 链表反转
+     * 案列：
+     * 输入：[1, 2, 3, 4, 5]
+     * 输出：[5, 4, 3, 2, 1]
+     *
      * @param head
      * @return
      */

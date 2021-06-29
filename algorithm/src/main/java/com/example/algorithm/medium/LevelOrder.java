@@ -1,5 +1,7 @@
 package com.example.algorithm.medium;
 
+import com.example.algorithm.structure.TreeNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,18 +12,26 @@ import java.util.Queue;
  * @Description
  * @create 2020-12-21 18:30
  */
-public class Solution {
+public class LevelOrder {
 
-    private static class TreeNode{
-        private TreeNode left;
-        private TreeNode right;
-        private Integer val;
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+        root.right.right.left = new TreeNode(7);
+        root.right.right.right = new TreeNode(8);
+        List<List<Integer>> lists = levelOrder(root);
 
-        public TreeNode(Integer val) {
-            this.val = val;
+        for (List<Integer> list : lists) {
+            for (Integer integer : list) {
+                System.out.print(integer + "   ");
+            }
+            System.out.println();
         }
-    }
 
+    }
 
     /**
      * 给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。
@@ -33,8 +43,8 @@ public class Solution {
      *    15   7
      * 返回其层序遍历结果：
      * [
-     *   [3],
-     *   [9,20],
+     *   [3]
+     *   [9,20]
      *   [15,7]
      * ]
      * @param root
@@ -49,7 +59,7 @@ public class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            List<Integer> level = new ArrayList<>();
+            List level = new ArrayList<>();
             int currentLevelSize = queue.size();
             for (int i = 1; i <= currentLevelSize; ++i) {
                 TreeNode node = queue.poll();
@@ -67,24 +77,6 @@ public class Solution {
         return ret;
     }
 
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.left = new TreeNode(5);
-        root.right.right = new TreeNode(6);
-        root.right.right.left = new TreeNode(7);
-        root.right.right.right = new TreeNode(8);
-        List<List<Integer>> lists = levelOrder(root);
-
-        for (List<Integer> list : lists) {
-            for (Integer integer : list) {
-                System.out.print(integer + ";");
-            }
-            System.out.println();
-        }
-
-    }
 
 
 }

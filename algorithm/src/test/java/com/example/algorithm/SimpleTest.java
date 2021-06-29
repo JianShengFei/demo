@@ -245,6 +245,9 @@ public class SimpleTest {
         System.out.println(now.after(startTime) && now.before(endTime));
     }
 
+    /**
+     * 随机数
+     */
     @Test
     public void test08(){
         Random rd = new Random();
