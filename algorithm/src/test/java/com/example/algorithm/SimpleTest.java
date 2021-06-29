@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * @author jianshengfei
  * @version 1.0.0
  * @ClassName SimpleTest.java
- * @Description TODO 请标注类具体的用途
+ * @Description 简单 写法 测试
  * @createTime 2021年06月16日 11:08
  */
 public class SimpleTest {

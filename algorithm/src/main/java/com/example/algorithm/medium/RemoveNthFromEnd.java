@@ -1,6 +1,7 @@
 package com.example.algorithm.medium;
 
 import com.example.algorithm.structure.ListNode;
+import com.example.algorithm.util.ListNodeUtil;
 
 /**
  * @ClassName RemoveNthFromEnd
@@ -10,9 +11,18 @@ import com.example.algorithm.structure.ListNode;
  */
 public class RemoveNthFromEnd {
 
+    private static ListNodeUtil listNodeUtil = new ListNodeUtil();
+
     public static void main(String[] args) {
 
+        Integer[] array = new Integer[]{1, 2, 3, 4, 5};
 
+        ListNode head = listNodeUtil.arrayToListNode(array);
+        listNodeUtil.ergodic(head);
+
+        ListNode listNode = removeNthFromEnd(head, 3);
+
+        listNodeUtil.ergodic(listNode);
 
 
     }
@@ -38,27 +48,26 @@ public class RemoveNthFromEnd {
      * @param n
      * @return
      */
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
         if(head == null) {
             return null;
         }
         // 哨兵节点
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
+        ListNode dummy = new ListNode(-1, head);
 
-        ListNode p = dummy;
+        ListNode p = head;
         ListNode q = dummy;
-        for (int i = 1; i < n +1; i++) {
-            q = q.next;
+        for (int i = 0; i < n; i++) {
+            p = p.next;
         }
 
-        while (q != null) {
+        while (p != null) {
             p = p.next;
             q = q.next;
         }
 
-        ListNode delNode = p.next;
-        p.next = delNode.next;
+        ListNode delNode = q.next;
+        q.next = delNode.next;
 
         return dummy.next;
     }
