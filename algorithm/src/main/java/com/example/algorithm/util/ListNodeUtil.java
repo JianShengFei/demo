@@ -34,7 +34,7 @@ public class ListNodeUtil<E> {
         if(head == null) {
             return;
         }
-
+        System.out.println();
         System.out.print(head.val + "  ");
         while (head.next != null) {
             ListNode next = head.next;

@@ -27,6 +27,14 @@ public class CopyRandomList {
 
     private void copy(RandomListNode head) {
         // TODO 克隆node
+        if(head == null) {
+            return;
+        }
+
+        while (head != null) {
+
+        }
+
     }
 
     private void copyRandom(RandomListNode head) {
