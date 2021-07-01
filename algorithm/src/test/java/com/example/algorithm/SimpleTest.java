@@ -3,6 +3,7 @@ package com.example.algorithm;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -198,6 +199,7 @@ public class SimpleTest {
         System.out.println(collect);
 
         System.out.println(asdasd.size() >> 1);
+        System.out.println(asdasd.size() << 1);
 
     }
 
@@ -209,8 +211,8 @@ public class SimpleTest {
     public void test06(){
         try {
             InetAddress addr = InetAddress.getLocalHost();
-            String ip = addr.getHostAddress().toString(); //获取本机ip
-            String hostName = addr.getHostName().toString(); //获取本机计算机名称
+            String ip = addr.getHostAddress(); //获取本机ip
+            String hostName = addr.getHostName(); //获取本机计算机名称
             System.out.println("本机IP：" + ip + "\n本机名称:" + hostName);
             Properties props = System.getProperties();
             System.out.println("操作系统的名称：" + props.getProperty("os.name"));
@@ -252,6 +254,13 @@ public class SimpleTest {
     public void test08(){
         Random rd = new Random();
         System.out.println(rd.nextInt(100));
+
+        Integer a = 10;
+        Double b = 10.34;
+
+        System.out.println(new BigDecimal(a));
+
+        System.out.println(new BigDecimal(b));
 
     }
 
