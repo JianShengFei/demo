@@ -24,52 +24,101 @@ public class CopyRandomList {
         one.random = san;
 
 
-        RandomListNode randomListNode = copyRandomNodeByMap(one);
+        RandomListNode randomListNode1 = copyRandomNodeByMap(one);
+        iterationRandomList(randomListNode1);
 
-        while (randomListNode != null) {
-            System.out.println(randomListNode.val);
-            if(randomListNode.random != null) {
-                System.out.println(randomListNode.random.val);
+        System.out.println("-------------------------------------------");
+
+        RandomListNode randomListNode2 = copyRandomList(one);
+        iterationRandomList(randomListNode2);
+    }
+
+    /**
+     * 遍历打印 random 链表
+     * @param head
+     */
+    public static void iterationRandomList(RandomListNode head){
+        while (head != null) {
+            System.out.print("node: " + head.val + "   ");
+            if(head.random != null) {
+                System.out.print("random: " + head.random.val + "   ");
             }
-            System.out.println("-----------------------------");
-            randomListNode = randomListNode.next;
+            System.out.println();
+            head = head.next;
         }
-
     }
 
 
+    /**
+     * 通过构建重复节点后 拆分链表 复制链表
+     *
+     * [1, 2, 3]  =>  [1, 1`, 2, 2`, 3, 3`]  =>  [1`, 2`, 3`]
+     *
+     * @param head
+     * @return
+     */
     public static RandomListNode copyRandomList(RandomListNode head){
-
         if(head == null) {
             return null;
         }
-
         copy(head);
-
         copyRandom(head);
-
         return split(head);
     }
 
+    /**
+     * copy 节点
+     * @param head
+     */
     private static void copy(RandomListNode head) {
-        // TODO 克隆node
         if(head == null) {
             return;
         }
 
-        while (head != null) {
-
+        RandomListNode newHead = head;
+        while (newHead != null) {
+            RandomListNode next = newHead.next;
+            RandomListNode copyNode = new RandomListNode(newHead.val);
+            newHead.next = copyNode;
+            copyNode.next = next;
+            newHead = next;
         }
-
     }
 
+    /**
+     * copy random 节点
+     * @param head
+     */
     private static void copyRandom(RandomListNode head) {
-        // TODO 克隆random node
+        RandomListNode newHead = head;
+        // 当前节点和节点的复制节点不为空时 继续
+        while (newHead != null && newHead.next != null) {
+            if(newHead.random != null) {
+                RandomListNode copyRandom = new RandomListNode(newHead.random.val);
+                newHead.next.random = copyRandom;
+            }
+            newHead = newHead.next.next;
+        }
     }
 
+    /**
+     * 分隔 random 链表
+     * @param head
+     * @return
+     */
     private static RandomListNode split(RandomListNode head) {
-        // TODO 拆分linked list
-        return null;
+        RandomListNode result = head.next;
+        RandomListNode move = head.next;
+
+        while (head != null && head.next != null) {
+            head.next = head.next.next;
+            head = head.next;
+            if(move != null && move.next != null) {
+                move.next = move.next.next;
+                move = move.next;
+            }
+        }
+        return result;
     }
 
 
