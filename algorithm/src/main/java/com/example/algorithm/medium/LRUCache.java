@@ -1,0 +1,85 @@
+package com.example.algorithm.medium;
+
+import java.util.HashMap;
+
+/**
+ * @ClassName LRUCache
+ * @Description LRU 缓存 最近最少使用
+ *
+ * 设计和构建一个“最近最少使用”缓存，该缓存会删除最近最少使用的项目。缓存应该从键映射到值(允许你插入和检索特定键对应的值)，并在初始化时指定最大容量。当缓存被填满时，它应该删除最近最少使用的项目。
+ *
+ * 它应该支持以下操作： 获取数据 get 和 写入数据 put 。
+ *
+ * 获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
+ * 写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
+ *
+ * 来源：力扣（LeetCode）
+ * 链接：https://leetcode-cn.com/problems/lru-cache-lcci
+ * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ *
+ * @Author jianshengfei
+ * @Date 2021/7/4 18:02
+ */
+public class LRUCache<K, V> {
+
+    private class CacheNode<K, V> {
+        CacheNode prev;
+        CacheNode next;
+        K key;
+        V value;
+
+        public CacheNode(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    /**
+     * 头节点
+     */
+    private CacheNode head = new CacheNode(-1, -1);
+
+    /**
+     * 尾节点
+     */
+    private CacheNode tail = new CacheNode(-1, -1);
+
+    /**
+     * 缓存数据个数
+     */
+    private int capacity;
+
+    /**
+     * 使用hashMap存储数据，规避链表查询速度相对慢的问题
+     */
+    private HashMap<K, CacheNode<K, V>> cacheMap = new HashMap();
+
+
+    /**
+     * 初始化缓存
+     * @param capacity 缓存个数
+     */
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.head.next = tail;
+        this.tail.prev = head;
+    }
+
+    public V get(K key) {
+//        if(!cacheMap.containsKey(key)) {
+//            return -1;
+//        }
+
+
+
+
+        return cacheMap.get(key).value;
+    }
+
+    public void put(K key, V value) {
+
+    }
+
+
+
+}
