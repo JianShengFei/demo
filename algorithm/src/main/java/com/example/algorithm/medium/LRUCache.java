@@ -10,7 +10,7 @@ import java.util.HashMap;
  *
  * 它应该支持以下操作： 获取数据 get 和 写入数据 put 。
  *
- * 获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
+ * 获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。这里为了兼容泛型, get(key) 不存在时  返回 null
  * 写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
  *
  * 来源：力扣（LeetCode）
@@ -65,21 +65,48 @@ public class LRUCache<K, V> {
         this.tail.prev = head;
     }
 
+    /**
+     * <font color='red'>这里为了兼容泛型, get(key) 不存在时  返回 null</font>
+     * @param key
+     * @return
+     */
     public V get(K key) {
-//        if(!cacheMap.containsKey(key)) {
-//            return -1;
-//        }
-
-
-
-
+        if(!cacheMap.containsKey(key)) {
+            return null;
+        }
+        CacheNode<K, V> current = cacheMap.get(key);
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+        moveToTail(current);
         return cacheMap.get(key).value;
     }
 
     public void put(K key, V value) {
+        if(get(key) != null) {
+            cacheMap.get(key).value = value;
+            return;
+        }
 
+        // 清除掉链表第一个元素
+        if(capacity == cacheMap.size()) {
+            cacheMap.remove(head.next);
+            head.next = head.next.next;
+            head.next.prev = head;
+        }
+
+        CacheNode cacheNode = new CacheNode(key, value);
+        cacheMap.put(key, cacheNode);
+        moveToTail(cacheNode);
     }
 
+
+    private void moveToTail(CacheNode<K, V> current) {
+        // 注意到这里的时候 current 的上下节点都是null, 不再考虑这种情况
+        current.prev = tail.prev;
+        tail.prev = current;
+        current.prev.next = current;
+        current.next = tail;
+    }
 
 
 }
