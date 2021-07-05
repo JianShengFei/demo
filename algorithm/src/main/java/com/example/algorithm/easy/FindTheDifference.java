@@ -40,23 +40,23 @@ public class FindTheDifference {
 
         int ret = 0;
         for (int i = 0; i < s.length(); ++i) {
-            System.out.println(s.charAt(i) + ", s.charAt(i):   " + Integer.toBinaryString(s.charAt(i)));
-            System.out.println("        ret:   " + Integer.toBinaryString(ret));
+//            System.out.println(s.charAt(i) + ", s.charAt(i):   " + Integer.toBinaryString(s.charAt(i)));
+//            System.out.println("        ret:   " + Integer.toBinaryString(ret));
             ret ^= s.charAt(i);
-            System.out.println("result  ret:   " + Integer.toBinaryString(ret));
-            System.out.println("________________________");
+//            System.out.println("result  ret:   " + Integer.toBinaryString(ret));
+//            System.out.println("________________________");
         }
 
-        System.out.println("_______________________________________________");
-        System.out.println(ret);
-        System.out.println("_______________________________________________");
+//        System.out.println("_______________________________________________");
+//        System.out.println(ret);
+//        System.out.println("_______________________________________________");
 
         for (int i = 0; i < t.length(); ++i) {
-            System.out.println(t.charAt(i) + ", t.charAt(i):" + Integer.toBinaryString(t.charAt(i)));
-            System.out.println("        ret:   " + Integer.toBinaryString(ret));
+//            System.out.println(t.charAt(i) + ", t.charAt(i):" + Integer.toBinaryString(t.charAt(i)));
+//            System.out.println("        ret:   " + Integer.toBinaryString(ret));
             ret ^= t.charAt(i);
-            System.out.println("result  ret:   " + Integer.toBinaryString(ret));
-            System.out.println("_________________________");
+//            System.out.println("result  ret:   " + Integer.toBinaryString(ret));
+//            System.out.println("_________________________");
         }
         return (char) ret;
     }

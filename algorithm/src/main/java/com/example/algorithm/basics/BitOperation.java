@@ -22,9 +22,26 @@ public class BitOperation {
         exclusiveOr(3, 5);
         System.out.println("-----------------------------");
 
+        System.out.println( 1 + 4);
 
-        System.out.println(97 ^ 0);
+        System.out.println(add(9, 14));
     }
+
+    /**
+     * 位运算  四则运算  加法
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int add(int a, int b){
+        while (b != 0) {
+            int temp = a ^ b;
+            b = (a & b) << 1;
+            a = temp;
+        }
+        return a;
+    }
+
 
     public static void and(int a, int b){
         /* 与 运算，将两个数转为 二进制，按位进行 比较
@@ -47,7 +64,7 @@ public class BitOperation {
 
     public static void exclusiveOr(int a, int b){
         /*
-            异或 运算，将两个数转为 二进制，按位进行 比较
+            异或 运算，将两个数转为 二进制，按位进行 比较, 相同 = 0， 不相同 = 1
                 3: 0 1 1
                 5: 1 0 1
                =7: 1 1 0
