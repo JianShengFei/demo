@@ -25,6 +25,12 @@ public class BitOperation {
         System.out.println( 1 + 4);
 
         System.out.println(add(9, 14));
+
+
+        int a1 = 2147483647;
+        System.out.println(Integer.toBinaryString(a1));
+        System.out.println(Integer.toBinaryString(a1).length());
+
     }
 
     /**

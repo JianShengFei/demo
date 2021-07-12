@@ -1,6 +1,7 @@
 package com.example.algorithm.easy;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * @author jianshengfei
@@ -14,7 +15,16 @@ public class TwoSum {
     public static void main(String[] args) {
         int[] array = new int[]{4, 3, 6, 8, 11};
 
-        int[] ints = twoSum(array, 14);
+        int[] ints = twoSumByViolence(array, 14);
+        Arrays.stream(ints).forEach(value -> System.out.print(value + "  "));
+
+        array = new int[]{2, 3, 4, 8, 11};
+
+        ints = twoSumByViolence(array, 6);
+
+        Arrays.stream(ints).forEach(value -> System.out.print(value + "  "));
+
+        ints = twoSumByHashTable(array, 99);
         Arrays.stream(ints).forEach(value -> System.out.print(value + "  "));
 
     }
@@ -44,17 +54,31 @@ public class TwoSum {
      * @param target
      * @return
      */
-    public static int[] twoSum(int[] nums, int target) {
+    public static int[] twoSumByViolence(int[] nums, int target) {
         int n = nums.length;
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            for (int j = i + 1; j < n; j++) {
                 if(nums[i] + nums[j] == target) {
                     return new int[]{i, j};
                 }
             }
         }
         return new int[0];
+    }
+
+    public static int[] twoSumByHashTable(int[] nums, int target){
+
+        HashMap<Integer, Integer> hashTable = new HashMap(nums.length);
+
+        for(int i = 0; i < nums.length; i++){
+            if(hashTable.containsKey(target - nums[i])) {
+                return new int[]{hashTable.get(target - nums[i]), i};
+            }
+            hashTable.put(nums[i], i);
+        }
+
+        return null;
     }
 
 

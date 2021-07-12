@@ -1,7 +1,7 @@
 package com.example.algorithm;
 
 import com.example.algorithm.easy.FindTheDifference;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * @author jianshengfei
@@ -72,7 +72,10 @@ public class BitOperationTest {
         System.out.println(b);
 
         String a1 = "简";
-        String b1 = "枫";
+        String b1 = "简";
+
+        System.out.println(a1.hashCode());
+        System.out.println(b1.hashCode());
 
     }
 

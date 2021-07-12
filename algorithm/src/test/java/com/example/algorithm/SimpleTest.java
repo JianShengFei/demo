@@ -1,7 +1,11 @@
 package com.example.algorithm;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.json.JSONObject;
 import lombok.Data;
-import org.junit.jupiter.api.Test;
+import org.apache.commons.lang.StringUtils;
+import org.junit.Test;
+
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
@@ -262,6 +266,67 @@ public class SimpleTest {
 
         System.out.println(new BigDecimal(b));
 
+    }
+
+    @Test
+    public void test09(){
+
+        Integer a = 1;
+
+        switch (a) {
+            case 1:
+                System.out.println(1);
+            case 2:
+                System.out.println(2);
+                break;
+            case 3:
+                System.out.println(3);
+                break;
+            default:
+                System.out.println("null");
+                break;
+        }
+    }
+
+    @Test
+    public void test10(){
+
+        String a = "41370667185, 41370667186";
+        String[] split = a.split(",");
+
+        List<Long> collect = Arrays.asList(split).stream().filter(s -> StringUtils.isNotBlank(s)).map(s -> Long.valueOf(s.trim())).collect(Collectors.toList());
+
+        System.out.println(collect);
+        System.out.println(collect.size());
+
+    }
+
+
+    @Test
+    public void test11(){
+        String a = "41370667185, 41370667186";
+        String[] split = a.split(",");
+
+        List<Long> collect = Arrays.asList(split).stream().filter(s -> StringUtils.isNotBlank(s)).map(s -> Long.valueOf(s.trim())).collect(Collectors.toList());
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("value", collect);
+
+    }
+
+    @Test
+    public void test12(){
+
+
+        int a = 1 ;
+
+        int b = 1 ;
+
+        System.out.println(a == b);
+
+        List<Long> array = new ArrayList<>();
+        System.out.println(CollectionUtil.isEmpty(array));
+        System.out.println(array == null);
     }
 
 }
