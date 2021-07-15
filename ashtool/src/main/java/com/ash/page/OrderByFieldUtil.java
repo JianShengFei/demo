@@ -50,7 +50,7 @@ public class OrderByFieldUtil {
             fmc = new HashMap<>(condition.entityClass.getDeclaredFields().length);
         }
         if(this.condition.entityClass == null) {
-            this.condition.entityClass = condition.initGenericParadigm();
+            this.condition.entityClass = condition.initGenericParadigm(0);
         }
     }
 

@@ -23,6 +23,10 @@ public class OrderByFieldTest {
 
         FieldMappingCondition<OrderByMappingBean> condition = new FieldMappingCondition().setSingle(true);
 
+        Map<String, String> orderByFieldsMap = orderByFieldUtil.getOrderByFieldsMap(condition);
+
+        System.out.println(orderByFieldsMap);
+
 
 
     }

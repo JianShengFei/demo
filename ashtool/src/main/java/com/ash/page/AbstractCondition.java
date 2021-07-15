@@ -11,11 +11,6 @@ import java.lang.reflect.ParameterizedType;
  */
 public abstract class AbstractCondition<T> {
 
-    protected Class<T> entityClass;
 
-    public Class initGenericParadigm() {
-        entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        return entityClass;
-    }
 
 }

@@ -5,6 +5,7 @@ import cn.hutool.json.JSONObject;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
+import org.springframework.util.Assert;
 
 
 import java.math.BigDecimal;
@@ -327,6 +328,68 @@ public class SimpleTest {
         List<Long> array = new ArrayList<>();
         System.out.println(CollectionUtil.isEmpty(array));
         System.out.println(array == null);
+    }
+
+    @Test
+    public void test13(){
+
+        /*
+            范围是-2,147,483,648 到 2,147,483,647
+
+            12,000,000,000  转为 二进制：10 11001011 01000001 01111000 00000000
+
+         */
+
+        int a = 200 * 300 * 400 * 500; // -884,901,888
+        int b = 200 * 300 * 400;  // 24000000
+        System.out.println(a);
+        System.out.println(b);
+
+        System.out.println(Integer.toBinaryString(2147483647));
+
+
+    }
+
+    /**
+     * StringJoiner test
+     */
+    @Test
+    public void test14(){
+
+        StringJoiner stringJoiner = new StringJoiner(",");
+        for (int i = 0; i < 10; i++) {
+            stringJoiner.add(i+"");
+        }
+        System.out.println(stringJoiner);
+
+
+    }
+
+    @Test
+    public void test15(){
+
+        Boolean a = null;
+
+        Assert.notNull(a, "条件参数不能为空");
+
+        cn.hutool.core.lang.Assert.notNull(a, "条件参数不能为空");
+
+    }
+
+    @Test
+    public void test16(){
+
+        String replace = "回T退订";
+
+        String message = "asd  回T退订回T退订回T退订";
+
+        String s = message.replaceAll(replace, "").trim();
+
+        System.out.println(s);
+
+        cn.hutool.core.lang.Assert.notBlank(s, "短信内容实际为空");
+
+
     }
 
 }
