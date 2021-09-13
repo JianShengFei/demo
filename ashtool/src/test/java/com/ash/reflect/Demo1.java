@@ -28,5 +28,9 @@ public class Demo1<T1, T2 extends Integer, T3 extends Demo1T1> {
     }
 
 
+    public void test01() {
+
+    }
+
 
 }

@@ -1,6 +1,5 @@
 package com.ash.demo.proxy.dynamicproxy;
 
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author jianshengfei
@@ -9,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
  * @Description 真实对象
  * @createTime 2021年03月08日 17:08:00
  */
-@Slf4j
 public class User implements Buy {
 
     @Override

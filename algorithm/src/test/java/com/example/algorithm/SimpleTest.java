@@ -1,12 +1,13 @@
 package com.example.algorithm;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONObject;
 import lombok.Data;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.util.Assert;
-
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
@@ -390,6 +391,17 @@ public class SimpleTest {
         cn.hutool.core.lang.Assert.notBlank(s, "短信内容实际为空");
 
 
+    }
+
+    @Test
+    public void test17(){
+
+        Date now = new Date();
+        DateTime nextWeek = DateUtil.nextWeek();
+
+        System.out.println(nextWeek.before(now));
+
+        System.out.println(now.before(nextWeek));
     }
 
 }
