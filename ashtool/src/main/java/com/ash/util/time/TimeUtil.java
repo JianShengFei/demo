@@ -111,6 +111,13 @@ public class TimeUtil {
         return localDates;
     }
 
+    /**
+     * 推移时间
+     * @param localDate
+     * @param dateNum
+     * @param cycleTimeEnum
+     * @return
+     */
     private static LocalDate plusDateByType(LocalDate localDate, Integer dateNum, TimeCycleTypeEnum cycleTimeEnum) {
         if(cycleTimeEnum.equals(TimeCycleTypeEnum.DAYS)) {
             localDate.with(AdditiveTemporalAdjusters.nextDayOfMonth(DayOfMonth.of(dateNum)));

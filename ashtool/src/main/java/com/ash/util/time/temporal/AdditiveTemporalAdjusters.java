@@ -15,7 +15,7 @@ import static java.time.temporal.ChronoUnit.MONTHS;
 
 /**
  * <p>
- * 基于 jdk1.8 的调整器, 实现的额外的功能方法
+ * 基于 jdk1.8 的调整器, 实现的额外的功能方法扩展
  * </p>
  * Common and useful TemporalAdjusters.
  * <p>
