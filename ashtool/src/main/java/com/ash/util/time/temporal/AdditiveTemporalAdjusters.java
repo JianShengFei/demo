@@ -79,7 +79,6 @@ public class AdditiveTemporalAdjusters {
     public static TemporalAdjuster nextMonthOfYear(Month month) {
         return (temporal -> {
             int calDow = temporal.get(MONTH_OF_YEAR);
-            System.out.println(month.getValue());
             int monthsDiff = calDow - month.getValue();
             return temporal.plus(monthsDiff >= 0 ? 12 - monthsDiff : -monthsDiff, MONTHS);
         });

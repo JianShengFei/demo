@@ -10,6 +10,7 @@ import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author jianshengfei
@@ -77,7 +78,7 @@ public class TimeUtil {
      * </p>
      *
      * @param localDate 对比时间对象
-     * @param dateNums 需要计算推移的时间点集合  {10, 16} 代表的是 10日 如 10月10日
+     * @param dateNums 需要计算推移的时间点集合  {10, 16} 代表的是 10日 如 10月10日   此参数会进行一次去重, 避免多次无用的计算
      * @param cycleTimeEnum 推移时间集合类型  可以直接理解为时间单位
      * @return
      */
@@ -91,18 +92,12 @@ public class TimeUtil {
             throw new NullPointerException("enum cannot be null");
         }
 
-        // 这里只给出两种类型，按年的没那个必要，按小时分钟的 jdk 已有实现
-        List<TimeCycleTypeEnum> enums = new ArrayList<>();
-        enums.add(TimeCycleTypeEnum.DAYS);
-        enums.add(TimeCycleTypeEnum.WEEKS);
-        enums.add(TimeCycleTypeEnum.MONTHS);
-        if(!enums.contains(cycleTimeEnum)) {
-            throw new NullPointerException(cycleTimeEnum.getName() + ", 类型暂无实现");
-        }
-
         if(localDate == null) {
             localDate = LocalDate.now();
         }
+
+        // 对传入的推移时间进行去重
+        dateNums = dateNums.stream().distinct().collect(Collectors.toList());
 
         List<LocalDate> localDates = new ArrayList<>();
         for (Integer dateNum : dateNums) {
@@ -120,13 +115,13 @@ public class TimeUtil {
      */
     private static LocalDate plusDateByType(LocalDate localDate, Integer dateNum, TimeCycleTypeEnum cycleTimeEnum) {
         if(cycleTimeEnum.equals(TimeCycleTypeEnum.DAYS)) {
-            localDate.with(AdditiveTemporalAdjusters.nextDayOfMonth(DayOfMonth.of(dateNum)));
+            return localDate.with(AdditiveTemporalAdjusters.nextDayOfMonth(DayOfMonth.of(dateNum)));
         }else if(cycleTimeEnum.equals(TimeCycleTypeEnum.WEEKS)) {
-            localDate.with(TemporalAdjusters.next(DayOfWeek.of(dateNum)));
+            return localDate.with(TemporalAdjusters.next(DayOfWeek.of(dateNum)));
         }else if(cycleTimeEnum.equals(TimeCycleTypeEnum.MONTHS)) {
-            localDate.with(AdditiveTemporalAdjusters.nextMonthOfYear(Month.of(dateNum)));
+            return localDate.with(AdditiveTemporalAdjusters.nextMonthOfYear(Month.of(dateNum)));
         }
-        return localDate;
+        return null;
     }
 
     /**

@@ -22,11 +22,7 @@ public enum TimeCycleTypeEnum {
     /**
      * 月
      */
-    MONTHS("月"),
-    /**
-     * 年
-     */
-    YEARS("年")
+    MONTHS("月")
     ;
 
     private String name;

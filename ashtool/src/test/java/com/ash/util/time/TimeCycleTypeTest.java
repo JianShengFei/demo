@@ -16,33 +16,55 @@ import java.util.List;
  */
 public class TimeCycleTypeTest {
 
+    /**
+     * 对 日 类型下一次出现时间的测试
+     */
     @Test
-    public void test01() {
-        LocalDate now = LocalDate.now();
+    public void textNextDayTime() {
+        LocalDate date = LocalDate.now();
         List<Integer> dateLists = new ArrayList<>();
         dateLists.add(2);
         dateLists.add(5);
-        LocalDate nextDate = TimeUtil.getNextDate(now, dateLists, TimeCycleTypeEnum.DAYS);
-        System.out.println(nextDate);
-
-        LocalDate nextDate1 = TimeUtil.getNextDate(now, 15, TimeCycleTypeEnum.DAYS);
+        LocalDate nextDate1 = TimeUtil.getNextDate(date, dateLists, TimeCycleTypeEnum.DAYS);
         System.out.println(nextDate1);
+
+        LocalDate nextDate2 = TimeUtil.getNextDate(date, 15, TimeCycleTypeEnum.DAYS);
+        System.out.println(nextDate2);
     }
 
+    /**
+     * 对 周 类型下一次出现时间的测试
+     */
     @Test
-    public void test02() {
-        LocalDate now = LocalDate.now();
+    public void testNextWeekTime() {
+        LocalDate date = LocalDate.now();
+        List<Integer> dateLists = new ArrayList<>();
+        dateLists.add(3);
+        dateLists.add(5);
+        LocalDate nextDate1 = TimeUtil.getNextDate(date, dateLists, TimeCycleTypeEnum.WEEKS);
+        System.out.println(nextDate1);
+
+        LocalDate nextDate2 = TimeUtil.getNextDate(date, 4, TimeCycleTypeEnum.WEEKS);
+        System.out.println(nextDate2);
+    }
+
+    /**
+     * 对 月 类型下一次出现时间的测试
+     */
+    @Test
+    public void testNextMonthTime() {
+        LocalDate date = LocalDate.now();
         List<Integer> dateLists = new ArrayList<>();
         dateLists.add(2);
-        dateLists.add(5);
-        List<LocalDate> dates = TimeUtil.getPassageTimesByType(now, dateLists, TimeCycleTypeEnum.DAYS);
-        dates.forEach(localDate -> System.out.println(localDate));
+        dateLists.add(11);
+        LocalDate nextDate1 = TimeUtil.getNextDate(date, dateLists, TimeCycleTypeEnum.MONTHS);
+        System.out.println(nextDate1);
 
-        System.out.println("---------------------------");
-
-        LocalDate date = TimeUtil.getPassageTimesByType(LocalDate.now(), 12, TimeCycleTypeEnum.DAYS);
-        System.out.println(date);
+        LocalDate nextDate2 = TimeUtil.getNextDate(date, 12, TimeCycleTypeEnum.MONTHS);
+        System.out.println(nextDate2);
     }
+
+
 
 
 }
