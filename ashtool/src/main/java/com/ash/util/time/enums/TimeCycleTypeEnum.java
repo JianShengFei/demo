@@ -35,11 +35,4 @@ public enum TimeCycleTypeEnum {
         this.name = name;
     }
 
-    public static void main(String[] args) {
-
-        boolean contains = EnumUtil.contains(TimeCycleTypeEnum.class, "日");
-        System.out.println(contains);
-
-    }
-
 }
