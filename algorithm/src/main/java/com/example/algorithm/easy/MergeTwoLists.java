@@ -4,7 +4,7 @@ import com.example.algorithm.structure.ListNode;
 import com.example.algorithm.util.ListNodeUtil;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName MergeTwoLists.java
  * @Description 合并两个有序链表

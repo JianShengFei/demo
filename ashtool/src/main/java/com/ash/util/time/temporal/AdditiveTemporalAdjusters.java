@@ -47,7 +47,7 @@ import static java.time.temporal.ChronoUnit.MONTHS;
  * <li>finding the next or previous day-of-week, such as "next Thursday"
  * </ul>
  *
- * @author jianshengfei
+ * @author Ash Jan
  * @implSpec
  * All the implementations supplied by the static methods are immutable.
  *

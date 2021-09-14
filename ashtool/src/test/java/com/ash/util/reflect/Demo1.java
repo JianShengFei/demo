@@ -1,7 +1,7 @@
 package com.ash.util.reflect;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName Demo.java
  * @Description public class Demo1<T1, T2 extends Integer, T3 extends Demo1I1 & Demo1I2>

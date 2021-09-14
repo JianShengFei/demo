@@ -9,7 +9,7 @@ import java.util.Objects;
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName DayOfMonth.java
  * @Description 月份中的号数定义类

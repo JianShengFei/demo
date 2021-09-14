@@ -3,7 +3,7 @@ package com.example.algorithm.structure;
 /**
  * @ClassName ListNode
  * @Description 单项链表节点对象
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/6/28 0:27
  */
 public class ListNode<E> {

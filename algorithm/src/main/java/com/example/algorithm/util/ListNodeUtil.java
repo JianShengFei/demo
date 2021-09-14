@@ -5,7 +5,7 @@ import com.example.algorithm.structure.ListNode;
 /**
  * @ClassName ListNodeUtil
  * @Description 单向链表工具类
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/6/28 21:37
  */
 public class ListNodeUtil<E> {

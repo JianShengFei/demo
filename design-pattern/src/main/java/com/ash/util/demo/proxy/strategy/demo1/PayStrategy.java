@@ -1,7 +1,7 @@
 package com.ash.util.demo.proxy.strategy.demo1;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName PayStrategy.java
  * @Description 策略顶层接口定义

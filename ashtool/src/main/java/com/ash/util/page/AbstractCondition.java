@@ -3,7 +3,7 @@ package com.ash.util.page;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName AbstractCondition.java
  * @Description TODO 请标注类具体的用途

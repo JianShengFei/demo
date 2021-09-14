@@ -1,7 +1,7 @@
 package com.ash.util.demo.proxy.dynamicproxy.cglibproxy;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName CGLibProxy.java
  * @Description

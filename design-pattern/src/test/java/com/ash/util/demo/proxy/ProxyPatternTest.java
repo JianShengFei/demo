@@ -10,7 +10,7 @@
 //import java.util.List;
 //
 ///**
-// * @author jianshengfei
+// * @author Ash Jan
 // * @version 1.0.0
 // * @ClassName ProxyPatternTest.java
 // * @Description 代理模式测试类

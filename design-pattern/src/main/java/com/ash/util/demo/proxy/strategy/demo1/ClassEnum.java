@@ -1,7 +1,7 @@
 package com.ash.util.demo.proxy.strategy.demo1;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName ClassEnum.java
  * @Description TODO 请标注类具体的用途

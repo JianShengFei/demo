@@ -2,7 +2,7 @@ package com.ash.util.demo.proxy.dynamicproxy;
 
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName RealSubject.java
  * @Description 真实对象

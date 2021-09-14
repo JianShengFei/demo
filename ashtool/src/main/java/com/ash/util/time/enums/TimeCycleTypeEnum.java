@@ -3,7 +3,7 @@ package com.ash.util.time.enums;
 import cn.hutool.core.util.EnumUtil;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName TimeCycleTypeEnum.java
  * @Description 周期时间类型定义

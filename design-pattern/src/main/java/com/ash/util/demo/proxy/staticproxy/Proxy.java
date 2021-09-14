@@ -1,7 +1,7 @@
 package com.ash.util.demo.proxy.staticproxy;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName Proxy.java
  * @Description 代理类, 实现真实对象需要做的事，并在原有基础上增加附加方法

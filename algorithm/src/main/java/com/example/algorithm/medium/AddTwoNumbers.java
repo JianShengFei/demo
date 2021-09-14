@@ -6,7 +6,7 @@ import com.example.algorithm.util.ListNodeUtil;
 /**
  * @ClassName AddTwoNumbers
  * @Description 链表相加
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/7/4 14:23
  */
 public class AddTwoNumbers {

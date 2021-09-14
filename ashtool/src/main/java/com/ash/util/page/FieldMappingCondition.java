@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName FieldMappingCondition.java
  * @Description 字段映射条件构造器对象

@@ -6,7 +6,7 @@ import com.example.algorithm.util.ListNodeUtil;
 /**
  * @ClassName ReversalListII
  * @Description 反转链表II
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/6/27 22:11
  */
 public class ReversalListTwo {
