@@ -17,6 +17,11 @@ public class HuToolUtilTest {
     public void enumUtilTest() {
         boolean days = EnumUtil.contains(TimeCycleTypeEnum.class, "DAYS");
         System.out.println(days);
+    }
+
+    @Test
+    public void beanUtilTest() {
+
 
     }
 

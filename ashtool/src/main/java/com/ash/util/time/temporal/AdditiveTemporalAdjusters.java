@@ -57,32 +57,79 @@ import static java.time.temporal.ChronoUnit.MONTHS;
 public class AdditiveTemporalAdjusters {
 
     /**
+     * 获取下一次某个号数出现的时间调整器
+     *
+     * 如： 假设当前日期为  2021年9月15日  下次出现的日  17  是否往前查找为 false  返回的日期则为：2021年9月17日
+*                                                     是否往前查找为 true   返回的日期则为：2021年8月17日
+     *
+     * @param dayOfMonth 下次出现得号数 即日
+     * @param isPrev 是否往前面查找
+     * @return
+     */
+    public static TemporalAdjuster nextDayOfMonth(DayOfMonth dayOfMonth, boolean isPrev) {
+        return (temporal) -> {
+            int calDow = temporal.get(DAY_OF_MONTH);
+            int daysDiff = calDow - dayOfMonth.getDateNumber();
+            if(isPrev) {
+                return daysDiff == 0 ?
+                        temporal.plus(-1, MONTHS) :
+                        temporal.plus(daysDiff > 0 ?
+                                -daysDiff : -(LocalDate.now().plusMonths(-1).with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth() - dayOfMonth.getDateNumber() + calDow), DAYS);
+            }
+            return daysDiff == 0 ?
+                    temporal.plus(1, MONTHS) :
+                    temporal.plus(daysDiff > 0 ? LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth() - calDow + dayOfMonth.getDateNumber() : -daysDiff, DAYS);
+        };
+    }
+
+    /**
      * 获取下一个某个号数出现的时间调整器
      * @param dayOfMonth
      * @return
      */
     public static TemporalAdjuster nextDayOfMonth(DayOfMonth dayOfMonth) {
-        return (temporal) -> {
-            int calDow = temporal.get(DAY_OF_MONTH);
-            int daysDiff = calDow - dayOfMonth.getDateNumber();
-            return daysDiff == 0 ?
-                    temporal.plus(1, MONTHS) :
-                    temporal.plus(daysDiff > 0 ? LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth() - calDow + dayOfMonth.getDateNumber() : -daysDiff , DAYS);
-        };
+        return nextDayOfMonth(dayOfMonth, false);
+    }
+
+    public static TemporalAdjuster nextDayOfMonth(int dayOfMonth, boolean isPrev) {
+        return nextDayOfMonth(DayOfMonth.of(dayOfMonth), isPrev);
+    }
+
+    public static TemporalAdjuster nextDayOfMonth(int dayOfMonth) {
+        return nextDayOfMonth(DayOfMonth.of(dayOfMonth), false);
     }
 
     /**
      * 获取下一个某个月出现的时间调整器
-     * @param month
+     *
+     * 如：当前日期为：2021年9月15日  下次出现月份为 10月 是否往前查找为 false  返回的日期则为：2021年10月15日
+     *                                             是否往前查找为 true   返回的日期则为：2020年9月15日
+     *
+     * @param month 下次出现的月份
+     * @param isPrev 是否往前查找
      * @return
      */
-    public static TemporalAdjuster nextMonthOfYear(Month month) {
+    public static TemporalAdjuster nextMonthOfYear(Month month, boolean isPrev) {
         return (temporal -> {
             int calDow = temporal.get(MONTH_OF_YEAR);
             int monthsDiff = calDow - month.getValue();
+            if(isPrev) {
+                return temporal.plus(monthsDiff >= 0 ? -monthsDiff : -(12 - month.getValue() + calDow), MONTHS);
+            }
             return temporal.plus(monthsDiff >= 0 ? 12 - monthsDiff : -monthsDiff, MONTHS);
         });
     }
 
+    public static TemporalAdjuster nextMonthOfYear(Month month) {
+        return nextMonthOfYear(month, false);
+    }
+
+    public static TemporalAdjuster nextMonthOfYear(int month, boolean isPrev) {
+        return nextMonthOfYear(Month.of(month), isPrev);
+    }
+
+    public static TemporalAdjuster nextMonthOfYear(int month) {
+        return nextMonthOfYear(Month.of(month), false);
+    }
 
 }
