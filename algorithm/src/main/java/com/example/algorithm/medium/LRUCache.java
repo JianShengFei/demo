@@ -22,6 +22,21 @@ import java.util.HashMap;
  */
 public class LRUCache<K, V> {
 
+
+    public static void main(String[] args) {
+        // 初始化缓存 最多存放三个元素
+        LRUCache lruCache = new LRUCache(3);
+
+        lruCache.put(1, 1);
+        lruCache.put(2, 2);
+        lruCache.put(3, 3);
+
+        lruCache.get(3);
+        Object o = lruCache.get(1);
+        System.out.println(o);
+
+    }
+
     private class CacheNode<K, V> {
         CacheNode prev;
         CacheNode next;

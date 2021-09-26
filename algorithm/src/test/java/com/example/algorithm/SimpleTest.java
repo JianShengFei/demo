@@ -1,10 +1,9 @@
 package com.example.algorithm;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.json.JSONObject;
 import lombok.Data;
-import org.apache.commons.lang.StringUtils;
+import org.json.JSONObject;
 import org.junit.Test;
+import org.junit.platform.commons.util.StringUtils;
 import org.springframework.util.Assert;
 
 
@@ -25,6 +24,11 @@ import java.util.stream.Collectors;
  * @createTime 2021年06月16日 11:08
  */
 public class SimpleTest {
+
+    @Data
+    public static class SortBean{
+        private Long num;
+    }
 
     @Test
     public void test(){
@@ -81,10 +85,6 @@ public class SimpleTest {
 
     }
 
-    @Data
-    private class SortBean{
-        private Long num;
-    }
 
     @Test
     public void test2(){
@@ -326,7 +326,7 @@ public class SimpleTest {
         System.out.println(a == b);
 
         List<Long> array = new ArrayList<>();
-        System.out.println(CollectionUtil.isEmpty(array));
+
         System.out.println(array == null);
     }
 
@@ -372,7 +372,7 @@ public class SimpleTest {
 
         Assert.notNull(a, "条件参数不能为空");
 
-        cn.hutool.core.lang.Assert.notNull(a, "条件参数不能为空");
+        Assert.notNull(a, "条件参数不能为空");
 
     }
 
@@ -387,7 +387,7 @@ public class SimpleTest {
 
         System.out.println(s);
 
-        cn.hutool.core.lang.Assert.notBlank(s, "短信内容实际为空");
+        Assert.notNull(s, "短信内容实际为空");
 
 
     }
