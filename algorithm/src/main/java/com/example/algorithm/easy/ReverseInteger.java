@@ -1,7 +1,7 @@
 package com.example.algorithm.easy;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName ReverseInteger.java
  * @Description 整数反转

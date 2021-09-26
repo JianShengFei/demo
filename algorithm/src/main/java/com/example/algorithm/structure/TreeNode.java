@@ -1,7 +1,7 @@
 package com.example.algorithm.structure;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName TreeNode.java
  * @Description 树 节点对象

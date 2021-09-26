@@ -17,7 +17,7 @@ import java.util.HashMap;
  * 链接：https://leetcode-cn.com/problems/lru-cache-lcci
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/7/4 18:02
  */
 public class LRUCache<K, V> {

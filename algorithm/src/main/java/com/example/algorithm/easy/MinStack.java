@@ -3,7 +3,7 @@ package com.example.algorithm.easy;
 import java.util.Stack;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName MergeTwoLists.java
  * @Description 最小栈

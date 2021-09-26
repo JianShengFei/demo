@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @Description 通过ReentrantLock解决原子问题
  * @ClassName Thread.java

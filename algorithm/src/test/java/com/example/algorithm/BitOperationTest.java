@@ -4,7 +4,7 @@ import com.example.algorithm.easy.FindTheDifference;
 import org.junit.Test;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName BitOperationTest.java
  * @Description 位运算 test

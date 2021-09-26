@@ -1,11 +1,13 @@
 package com.example.algorithm;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSONObject;
 import lombok.Data;
-import org.json.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.junit.platform.commons.util.StringUtils;
 import org.springframework.util.Assert;
-
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
@@ -17,18 +19,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName SimpleTest.java
  * @Description 简单 写法 测试
  * @createTime 2021年06月16日 11:08
  */
 public class SimpleTest {
-
-    @Data
-    public static class SortBean{
-        private Long num;
-    }
 
     @Test
     public void test(){
@@ -326,7 +323,7 @@ public class SimpleTest {
         System.out.println(a == b);
 
         List<Long> array = new ArrayList<>();
-
+        System.out.println(CollectionUtil.isEmpty(array));
         System.out.println(array == null);
     }
 
@@ -390,6 +387,17 @@ public class SimpleTest {
         Assert.notNull(s, "短信内容实际为空");
 
 
+    }
+
+    @Test
+    public void test17(){
+
+        Date now = new Date();
+        DateTime nextWeek = DateUtil.nextWeek();
+
+        System.out.println(nextWeek.before(now));
+
+        System.out.println(now.before(nextWeek));
     }
 
 }

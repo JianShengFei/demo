@@ -3,7 +3,7 @@ package com.example.algorithm.structure;
 /**
  * @ClassName DoubleLinkedList
  * @Description 双向链表节点对象
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/6/28 21:42
  */
 public class DoublyListNode<E> {

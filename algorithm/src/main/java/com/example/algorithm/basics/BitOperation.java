@@ -1,7 +1,7 @@
 package com.example.algorithm.basics;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @Description
  * @create 2020-12-18 13:06
  */

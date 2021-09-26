@@ -6,7 +6,7 @@ import com.example.algorithm.util.ListNodeUtil;
 /**
  * @ClassName RemoveNthFromEnd
  * @Description 删除链表的倒数第 N 个结点
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/6/28 0:17
  */
 public class RemoveNthFromEnd {

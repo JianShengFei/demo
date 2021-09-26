@@ -1,7 +1,7 @@
 package com.example.algorithm.easy;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @Description 字符串找不同
  * @create 2020-12-18 12:48
  */
@@ -27,7 +27,7 @@ public class FindTheDifference {
      * 例2：
      * 输入：s = "", t = "y"
      * 输出："y"
-     * 2020年12月15日  jianshengfei
+     * 2020年12月15日  Ash Jan
      * @param s
      * @param t
      * @return Character

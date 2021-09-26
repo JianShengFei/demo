@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * @author jianshengfei
+ * @author Ash Jan
  * @version 1.0.0
  * @ClassName TwoSum.java
  * @Description 两数相加

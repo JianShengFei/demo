@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * @ClassName CopyRandomList
  * @Description Random 链表 深克隆
- * @Author jianshengfei
+ * @Author Ash Jan
  * @Date 2021/6/28 21:50
  */
 public class CopyRandomList {
