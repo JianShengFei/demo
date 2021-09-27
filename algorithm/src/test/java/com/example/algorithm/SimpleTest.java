@@ -82,10 +82,6 @@ public class SimpleTest {
 
     }
 
-    @Data
-    private class SortBean{
-        private Long num;
-    }
 
     @Test
     public void test2(){
@@ -373,7 +369,7 @@ public class SimpleTest {
 
         Assert.notNull(a, "条件参数不能为空");
 
-        cn.hutool.core.lang.Assert.notNull(a, "条件参数不能为空");
+        Assert.notNull(a, "条件参数不能为空");
 
     }
 
@@ -388,7 +384,7 @@ public class SimpleTest {
 
         System.out.println(s);
 
-        cn.hutool.core.lang.Assert.notBlank(s, "短信内容实际为空");
+        Assert.notNull(s, "短信内容实际为空");
 
 
     }

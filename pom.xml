@@ -93,19 +93,6 @@
 
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-
-    </repositories>
-
     <profiles>
         <profile>
             <!--不同环境Profile的唯一id-->
